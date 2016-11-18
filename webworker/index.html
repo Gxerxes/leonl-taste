@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script>
+            var webWorker = new Worker("CalculateWorker.js");
+            
+            webWorker.postMessage("hello world");
+            
+            //webWorker.terminate();
+            
+            webWorker.onmessage = function(evt) {
+                console.log(evt);
+                console.log(evt.data);
+            }
+        </script>
+    </head>
+    <body>
+        <canvas id="c" width="1200" height="800" style="border: 2px solid black; position: absolute; top: 50px; left: 50px;"></canvas>
+        
+        <input id="intensiveWork" type="button" value="Do Work" /><span
+        id="workResult"></span>
+        
+        <input id="speedy" type="range" min="0" max="10" value="10"
+        style="position:relative; visibility:hidden;" step="1"/>
+    </body>
+</html>
+    
