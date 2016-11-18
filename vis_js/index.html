@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Timeline basic demo</title>
+  <script src="node_modules/vis/dist/vis.js"></script>
+  <link href="node_modules/vis/dist/vis.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+  </style>
+    
+    <script src="googleAnalytics.js"></script>
+    <script src="shapes.js"></script>
+</head>
+<body>
+<div id="visualization"></div>
+    
+    <div id="mynetwork" style="width: 600px; height: 400px"></div>
+    
+<!--    <canvas id="mycanvas" style="width: 600px; height: 400px"></canvas>-->
+
+<script type="text/javascript">
+  var container = document.getElementById('visualization');
+  var data = [
+    {id: 1, content: 'item 1', start: '2013-04-20'},
+    {id: 2, content: 'item 2', start: '2013-04-14'},
+    {id: 3, content: 'item 3', start: '2013-04-18'},
+    {id: 4, content: 'item 4', start: '2013-04-16', end: '2013-04-19'},
+    {id: 5, content: 'item 5', start: '2013-04-25'},
+    {id: 6, content: 'item 6', start: '2013-04-27'}
+  ];
+  var options = {};
+  var timeline = new vis.Timeline(container, data, options);  
+    
+</script>
+<script>    
+  // create an array with nodes
+  var nodes = new vis.DataSet([
+    {id: 1, label: 'Node 1'},
+    {id: 2, label: 'Node 2'},
+    {id: 3, label: 'Node 3'},
+    {id: 4, label: 'Node 4'},
+    {id: 5, label: 'Node 5'}
+  ]);
+
+  // create an array with edges
+  var edges = new vis.DataSet([
+    {from: 1, to: 3},
+    {from: 1, to: 2},
+    {from: 2, to: 4},
+    {from: 2, to: 5}
+  ]);
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {};
+  var network = new vis.Network(container, data, options);
+
+</script>
+    
+    <script>
+        var canvas = document.createElement('canvas');
+    
+        canvas.id = 'mycanvas';
+        canvas.width = 600;
+        canvas.height = 400;
+        canvas.style.position = 'relative';
+        
+        document.body.appendChild(canvas);
+        
+        var ctx = canvas.getContext('2d');
+        ctx.fillRect(10, 50, 100, 200);
+        
+    </script>
+    
+</body>
+</html>
