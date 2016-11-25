@@ -1,0 +1,18 @@
+body
+{
+  font-family: "Brush Script MT", cursive;
+}
+
+table {
+    font-size: large;
+    border:1px solid #000;
+    width:20%;
+    background-color: blue;
+    color: white;
+    border-radius: 10px 10px;
+    border-spacing: 2px;
+    border-collapse: separate;
+}
+th, td {
+    padding:5px;
+}

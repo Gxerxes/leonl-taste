@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css" src="main.css"></style>
+	<script src="underscore.js"></script>
+
+</head>
+
+<body>
+	<script type="text/html" id='usageList'>
+        <table> 
+          <thead> 
+             <tr> 
+                <th> Id </th> <th>Name</th> 
+             </tr>
+          </thead> 
+          <tbody>
+            <% _.each(items, function(item, key, list) { %> 
+                 <% var f = item.name; %> 
+                  <tr> 
+                      <td> <%= key %></td>
+                       <td class="<%= f %>"><%= item.name %></td > 
+                  </tr>
+            <% });%>
+        </tbody > 
+       </table>
+    </script>
+	<!-- Create your target -->
+	<div id="target"></div>
+    <button (onclick)="debounceTest()">click</button>
+	<script src=app.js></script>
+</body>
+</html>
