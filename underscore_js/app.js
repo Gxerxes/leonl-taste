@@ -9,8 +9,22 @@ var items = [
         {name: "Zacarias"}
     ];
  
-var template = usageList.innerHTML;
-target.innerHTML = _.template(template,{items:items});
-
 
 console.log(_.shuffle([1, 2, 3, 4, 5, 6]));
+
+function throttleTest() {
+    console.log('throttle clicked');
+}
+
+function debounceTest() {
+    console.log('debounce clicked');
+}
+
+var throttled = _.throttle(throttleTest, 1000);
+var debounced = _.debounce(debounceTest, 1000);
+
+function functionTest(func) {
+    var result, context, args;
+
+    return func.apply(context, args)
+}

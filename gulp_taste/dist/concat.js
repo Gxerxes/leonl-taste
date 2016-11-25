@@ -1,0 +1,1 @@
+function Combine1(){}function Combine2(){}
