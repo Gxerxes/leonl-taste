@@ -7,6 +7,7 @@ var gp_concat = require('gulp-concat');
 var gp_copy = require('gulp-copy');
 var gp_cleanCSS = require('gulp-clean-css');
 var gp_del = require('del');
+var gp_iconfont = require('gulp-iconfont');
 var gp_imagemin = require('gulp-imagemin');
 var gp_jshint = require('gulp-jshint');
 var gp_minifyCSS = require('gulp-minify-css'); // deprecated
