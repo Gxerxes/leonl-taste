@@ -1,6 +1,10 @@
 SystemJS.config({
     baseURL:'.',
+    //
+    transpiler: 'babel',
+    babelOptions: {
 
+    },
     paths: {
 
     },
