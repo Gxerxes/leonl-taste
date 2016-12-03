@@ -1,3 +1,13 @@
 <h1>
   {{title}}
 </h1>
+
+<ul>
+  <li class="text" *ngFor="let item of items | async">
+      {{item.$value}}
+  </li>
+</ul>
+
+  <div> {{ (af.auth | async)?.uid }} </div>
+  <button (click)="login()">Login</button>
+  <button (click)="logout()">Logout</button>
