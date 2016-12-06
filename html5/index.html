@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <span id="ajaxButton" style="cursor: pointer; text-decoration: underline">make a request</span>
+        <button onclick="buttontest">button test</button>
+        <input type="button" id="myButton" value="Click Me" />
+        <script src="./xhr.js"></script>
+        <script>
+           function buttontest() {
+               console.log(this);
+           }
+           document.addEventListener('DOMContentLoaded', function() {
+               var elButton = document.getElementById("myButton");
+               elButton.addEventListener("click", function() {
+                   console.log(this);
+                   console.log(this.type);
+                   console.log(this.id);
+               }, false)
+           }, false);
+        </script>
+    </body>
+</html>
