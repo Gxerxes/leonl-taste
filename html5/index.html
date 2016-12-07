@@ -18,6 +18,15 @@
         <span id="ajaxButton" style="cursor: pointer; text-decoration: underline">make a request</span>
         <button onclick="buttontest">button test</button>
         <input type="button" id="myButton" value="Click Me" />
+        
+        <svg width="200px" height="200px">
+            <g transform="translate(400, 400)" id="myImage">
+                <rect id="mySquare" x="-10" y="-10" width="20" height="20" color="blue" />
+            </g>
+        </svg>
+        <input id="speed" type="text" value="10" />
+        <button id="zoom" onclick="startAnimation();">Start</button>
+
         <script src="./xhr.js"></script>
         <script>
            function buttontest() {
@@ -31,6 +40,41 @@
                    console.log(this.id);
                }, false)
            }, false);
+
+            var customer = function() {
+                var name = "Contoso";
+
+                return {
+                    getName: function() {
+
+                    },
+                    setName: function(newName) {
+                        name = newName
+                    }
+                };
+            }();
+
+            console.log(customer.name)
+        </script>
+
+        <script>
+            var squareShape;
+            var myTimer;
+
+            function startAnimation() {
+                squareShape = document.getElementById("mySquare");
+                squareShape.currentTheta = 0;
+                console.log(squareShape.currentTheta);
+                console.log(speed.value);
+                myTimer = setInterval(animateImage, speed.value);
+
+                animateImage();
+            }
+
+            function animateImage() {
+                squareShape.setAttribute('rotate', "angle("+squareShape.currentTheta + ")");
+                squareShape.currentTheta += 0.1;
+            }
         </script>
     </body>
 </html>
