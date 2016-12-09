@@ -1,0 +1,49 @@
+table {
+    border: 1px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+tr:nth-child(odd) {
+    background-color: red;
+}
+
+tr td:nth-of-type(even) {
+    background-color: blue;
+}
+
+h4 {
+    color: powderblue;
+}
+
+.headline {
+    color: red;
+}
+
+article {
+    color: black;
+    font-style: normal;
+}
+
+aside h4 {
+    font-style: italic !important;
+    color: yellow;
+}
+
+acticle h4 {
+    font-style: normal;
+    color: sienna;
+}
+
+p {
+    /*text-shadow: 1px 2px blue;
+    hyphens: auto;*/
+    border: solid;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.box {
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: stretch;
+}
