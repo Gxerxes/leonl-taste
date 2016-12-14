@@ -83,15 +83,15 @@
 }
 
 .square.rotateX {
-    transform: rotateX(120deg);
+    transform: perspective(100px) rotateX(120deg);
 }
 
 .square.rotateY {
-    transform: rotateY(180deg);
+    transform: perspective(100px) rotateY(40deg);
 }
 
 .square.rotateZ {
-    transform: rotateZ(120deg);
+    transform: perspective(100px) rotateZ(120deg);
 }
 
 .square.rotate3d {
