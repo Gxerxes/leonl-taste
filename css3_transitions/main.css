@@ -134,3 +134,17 @@
 #card.flipped {
     transform: rotateY( 180deg );
 }
+
+
+/*.card::before {
+    content: '';
+    width: 10px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    //border-left: 10px solid @card-left-border-hover-color;
+    background-color: @card-left-border-hover-color;
+    border-radius: 3px 0 0 3px;
+}*/
