@@ -18,3 +18,8 @@ server.on('error', function(e) {
         console.log('Port is taken');
     }
 });
+
+server.on('timeout', function(socket) {
+
+});
+
