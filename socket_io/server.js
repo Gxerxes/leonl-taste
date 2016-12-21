@@ -14,6 +14,14 @@ socket.on('connection', function(socket) {
     console.log('Client connection');
 
     socket.send('Hello');
+    socket.emit('news', {hello: 'hello.'});
+    socket.on('my other event', function (data) {
+       console.log('Server accept data: %j', data); 
+    });
+    socket.emit('setName', 'leon', function(data1, data2) {
+        console.log(data1);
+        console.log(data2);
+    });
     socket.on('message', function(msg) {
         console.log('Accept a message: ', msg)
     });

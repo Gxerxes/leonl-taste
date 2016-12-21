@@ -12,19 +12,56 @@
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io.connect();
+            socket.on('login', function (names) {
+                var str = "";
+                names.forEach(function (name) {
+                    str += "User" + name + "already login. <br/>";
+                });
+                document.getElementById('result').innerHTML = str;
+            });
+
+            function add() {
+                socket.emit('login', document.getElementById('nickname').value);
+            }
+
             socket.on('message', function(data) {
                 console.log(data);
                 socket.send('message accept');
-            })
+            });
             socket.on('disconnect', function() {
                 console.log('server disconnect');
-            })
+            });
+            socket.on('news', function (data) {
+                console.log(data.hello);
+                socket.emit('my other event', {my: 'data'});
+            });
+            socket.on('setName', function (name, fn) {
+                console.log(name);
+                fn('leon1', 'leon2');
+            });
+
+            function setNickName() {
+                socket.emit('set nickname', document.getElementById('nickname').value);
+            }
+            function getNickName() {
+                socket.emit('get nickname');
+                socket.on('send nickname', function (data) {
+                    console.log('My nickname is: ' + data);
+                });
+                socket.on('err', function (data) {
+                    console.log('server error: ' + data);
+                });
+            }
         </script>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
+        Username: <input type="text" id="nickname" />
+        <input type="button" onclick="add()" value="login"/></br>
+        <output id="result" />
+        <!--<input type="button" onclick="setNickName()" value="Set Nickname"/>
+        <input type="button" onclick="getNickName()" value="Get Nickname"/>-->
     </body>
 </html>
