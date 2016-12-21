@@ -17,18 +17,18 @@ socket.on('connection', function (socket) {
     });
 
     socket.on('set nickname', function (name) {
-        socket.set('nickname', name, function (params) {
-            socket.emit('send nickname', name);
-        });
+        // socket.set('nickname', name, function (params) {
+        //     socket.emit('send nickname', name);
+        // });
     });
 
     socket.on('get nickname', function () {
-        socket.get('nickname', function (err, name) {
-            if (err) {
-                socket.emit('err', err.message); 
-            } else {
-                socket.emit('send nickname', name);
-            }
-        });
+        // socket.get('nickname', function (err, name) {
+        //     if (err) {
+        //         socket.emit('err', err.message); 
+        //     } else {
+        //         socket.emit('send nickname', name);
+        //     }
+        // });
     });
 });
