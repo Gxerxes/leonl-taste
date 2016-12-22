@@ -53,6 +53,24 @@
                 });
             }
         </script>
+
+        <script>
+            var chat = io.connect('http://localhost:1337/chat');
+            var news = io.connect('http://localhost:1337/news');
+            chat.on('connect', function () {
+                chat.send('Hello.');
+                chat.on('message', function(msg) {
+                    console.log('From chat namespace accept message: ', msg);
+                });
+            });
+            news.on('connect', function() {
+                news.emit('send message', 'hello.');
+                news.on('send message', function(data) {
+                    console.log('From news namespace accept send message event, data is:', data);
+                });
+            });
+
+        </script>
     </head>
     <body>
         <!--[if lt IE 7]>
