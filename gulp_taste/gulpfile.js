@@ -35,4 +35,4 @@ gulp.task('compress-images', function() {
         .pipe(imagemin({ progressive: true, optimizationLevel: 10 }))
         .pipe(gulp.dest())
 
-})
+});
