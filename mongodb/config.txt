@@ -1,0 +1,1 @@
+// mongod.exe --logpath "d:\data\dbConf\mongodb.log" --logappend --dbpath "d:\data\db" --serviceName "myMongodbService" --serviceDisplayName "myMongodbService" --install

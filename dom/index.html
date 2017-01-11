@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="myDiv" data-appid="12345" data-myname="leon">
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ul>
+        </div>
+        <div class="bd user disabled"></div>
+        <button id="myButton">click me</button>
+
+        <script>
+            var myDiv = document.getElementById("myDiv");
+
+            myDiv.innerHTML = "<input type=\"hidden\"><script>eval(alert('hi');)<\/script>";
+
+            myDiv.style.backgroundColor = "red";
+            myDiv.style.width = "100px";
+            myDiv.style.height = "200px";
+            myDiv.style.border = "1px solid black";
+
+            var g = document.createElement('script');
+            var s = document.getElementsByTagName('script')[0];
+            g.text = "alert(\"hi\");"
+            s.parentNode.insertBefore(g, s);
+
+            // myDiv.innerHTML = "<style type=\"text/css\">body {background-color: black;}<\/style>";
+            
+            var appId = myDiv.dataset.appid;
+            var myName = myDiv.dataset.myname;
+
+            console.log(appId);
+            console.log(myName);
+
+            myDiv.dataset.appid = 23456;
+            myDiv.dataset.myname = "Li";
+
+            console.log(appId);
+            console.log(myName);
+
+
+            var computedStyle = document.defaultView.getComputedStyle(myDiv, null);
+
+            var button = document.getElementById("myButton");
+            button.focus();
+            console.log(document.activeElement === button);
+            console.log(document.hasFocus());
+            console.log('Document compatMode: ' + document.compatMode);
+            console.log('Document default charset: ' + document.defaultCharset);
+            console.log('Document charset: ' + document.charset);
+        </script>
+    </body>
+</html>

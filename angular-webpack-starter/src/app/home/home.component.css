@@ -1,0 +1,18 @@
+h4 {
+    color: color(orangered blackness(10%));
+    animation: 5s text-anim;
+}
+
+.panel {
+    background: url(images/sayagata.png) no-repeat center center;
+    background-size: cover;
+}
+
+@keyframes text-anim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
