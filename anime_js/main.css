@@ -21,3 +21,15 @@ div {
   height: 1.5rem;
   background: #FFF;
 }
+
+.blue {
+    width: 2rem;
+    height: 2rem;
+    margin: .5rem;
+}
+
+.green {
+    width: 2rem;
+    height: 2rem;
+    margin: .5rem;
+}
