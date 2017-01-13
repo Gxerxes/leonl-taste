@@ -15,7 +15,7 @@ export class PostService {
 		return this.http.get('/api/list').map(res => res.json() as Post[]);
 	}
 
-	list(search: string = null, page: number = 1, limit: number = 10): Observable<ListResult<Post>> {
+	list(search: string = null, page = 1, limit = 10): Observable<ListResult<Post>> {
 		let params = new URLSearchParams();
 		if (search) {
 			params.set('search', search);

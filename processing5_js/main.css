@@ -1,0 +1,20 @@
+body { 
+    margin: 0;
+    overflow: hidden;
+    color: white;
+    background-color: black;
+}
+.musicControls {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+.loader {
+    font-family: sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    display: none;
+}
+.loader.loading  { display: block; }

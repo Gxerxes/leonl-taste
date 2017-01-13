@@ -11,10 +11,6 @@
     "curly": true,
     "eofline": true,
     "forin": true,
-    "indent": [
-      true,
-      "tabs"
-    ],
     "label-position": true,
     "label-undefined": true,
     "max-line-length": [
