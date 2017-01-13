@@ -91,3 +91,68 @@ var colors = ['#FF324A', '#31FFA6', '#206EFF', '#FFFF99'];
 
 })();
 
+(function() {
+    var canvas = document.getElementById('boxlayoutCanvas'),
+        c = canvas.getContext('2d'),
+        w = canvas.width = window.innerWidth,
+        h = canvas.height = window.innerHeight;
+
+        var items = [];
+        for(var i=0; i<25; i++) {
+            items.push({
+                w: 20 + Math.floor(Math.random()*80),
+                h: 20 + Math.floor(Math.random()*80),
+                r: (9  + Math.floor(Math.random()*90)).toString(),
+                g: (9  + Math.floor(Math.random()*90)).toString(),
+                b: (9  + Math.floor(Math.random()*90)).toString()
+            });
+        }
+
+        function init() {
+            render();
+        }
+
+        function hbox(items, spacing, alignment, wrap) {
+            var x = spacing;
+            var y = spacing;
+            var maxHeight = 0;
+            var ypos = 0;
+
+            for(var i=0; i<items.length; i++){
+                maxHeight = Math.max(maxHeight, items[i].h );  
+            }
+            
+            for(var i=0; i<items.length; i++){
+                var item = items[i];
+                if(alignment ==="bot"){
+                ypos = maxHeight - item.h;
+                }
+                else if(alignment ==="mid"){
+                ypos = (maxHeight - item.h)/2;
+                }
+                else if(alignment ==="top"){
+                ypos = 0;
+                }
+                else{
+                ypos = Math.floor(Math.random()*item.h);
+                }
+                if(wrap && x + item.w + spacing > 800){
+                x = spacing;
+                y += maxHeight + spacing;
+                }
+                c.fillStyle = "#" + item.r + item.g + item.b;
+                c.fillRect(x, y + ypos, item.w, item.h);
+                x += item.w + spacing;
+            }
+        }
+
+        function render() {
+            c.fillStyle = "#001308";
+            c.fillRect(0,0,w,h);
+            hbox(items, 12, "mid", true);
+            requestAnimationFrame(render);
+        }
+
+        init();
+
+})();
