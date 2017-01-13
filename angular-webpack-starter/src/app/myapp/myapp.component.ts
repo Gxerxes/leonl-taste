@@ -12,7 +12,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MyAppComponent {
 
-
     constructor(router: Router, private location: Location, private route: ActivatedRoute) {
         location.subscribe(val => {
             console.log(val);
