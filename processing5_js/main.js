@@ -38,12 +38,14 @@ document.getElementById("audiofile").onchange = function(event) {
             song.disconnect();
             song.stop();
         }
-        
+        console.log(event.target.files[0]);
         // Load our new song
         song = loadSound(URL.createObjectURL(event.target.files[0]));
         loader.classList.add("loading");
 
         songStarted = false;
+
+        console.log(song);
     }
 }
 
@@ -100,3 +102,14 @@ playPauseButton.onclick = function() {
         playPauseButton.innerHTML = "&#9654;";
     }
 }
+
+
+var elem = document.querySelector('.pulse');
+var animation = elem.animate({
+    opacity: [0.5, 1],
+    transform: ['scale(0.5)', 'scale(1)'],
+}, {
+    direction: 'alternate',
+    duration: 500,
+    iterations: Infinity
+})
