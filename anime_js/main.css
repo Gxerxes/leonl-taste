@@ -1,4 +1,4 @@
-body {
+/*body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -33,4 +33,16 @@ div {
     width: 2rem;
     height: 2rem;
     margin: .5rem;
+}*/
+
+#demo1 {
+    width: 0;
+    height: 100px;
+    background-color: orange;
+}
+
+#demo2 {
+    width: 0;
+    height: 100px;
+    background-color: orange;
 }
