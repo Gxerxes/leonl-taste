@@ -18,6 +18,7 @@ export const SLIDER_VALUE_ACCESSOR: any = {
             <span *ngIf="!range" class="ui-slider-handle ui-state-default ui-corner-all" (mousedown)="onMouseDown($event)" [style.transition]="dragging ? 'none': null"
                 [ngStyle]="{'left': orientation == 'horizontal' ? handleValue + '%' : null,'bottom': orientation == 'vertical' ? handleValue + '%' : null}"></span>
             <span *ngIf="range" class="ui-slider-range ui-widget-header ui-corner-all" [ngStyle]="{'left':handleValues[0] + '%',width: (handleValues[1] - handleValues[0] + '%')}"></span>
+            <span *ngIf="showActiveRange" class="ui-slider-range ui-widget-header ui-corner-all" [ngStyle]="{'left': 0 + '%',width: ((value / max * 100) + '%')}"></span>
             <span *ngIf="orientation=='vertical'" class="ui-slider-range ui-slider-range-min ui-widget-header ui-corner-all" [ngStyle]="{'height': handleValue + '%'}"></span>
             <span *ngIf="range" (mousedown)="onMouseDown($event,0)" [style.transition]="dragging ? 'none': null" class="ui-slider-handle ui-state-default ui-corner-all" 
                 [ngStyle]="{'left':handleValues[0] + '%'}" [ngClass]="{'ui-slider-handle-active':handleIndex==0}"></span>
@@ -30,6 +31,8 @@ export const SLIDER_VALUE_ACCESSOR: any = {
     encapsulation: ViewEncapsulation.None
 })
 export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
+
+    showActiveRange: boolean = true;
 
     @Input() animate: boolean;
 
@@ -85,97 +88,97 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
     
     constructor(public el: ElementRef, public domHandler: DomHandler, public renderer: Renderer) {}
     
-    onMouseDown(event:Event,index?:number) {
-        if(this.disabled) {
+    onMouseDown(event: Event, index?: number) {
+        if (this.disabled) {
             return;
         }
-        
+
         this.dragging = true;
         this.updateDomData();
         this.sliderHandleClick = true;
         this.handleIndex = index;
     }
-    
+
     onBarClick(event) {
-        if(this.disabled) {
+        if (this.disabled) {
             return;
         }
-        
-        if(!this.sliderHandleClick) {
+
+        if (!this.sliderHandleClick) {
             this.updateDomData();
             this.handleChange(event);
         }
-        
+
         this.sliderHandleClick = false;
     }
 
     ngAfterViewInit() {
-        if(this.disabled) {
+        if (this.disabled) {
             return;
         }
-        
+
         this.dragListener = this.renderer.listenGlobal('body', 'mousemove', (event) => {
-            if(this.dragging) {                                
+            if (this.dragging) {
                 this.handleChange(event);
             }
         });
-        
+
         this.mouseupListener = this.renderer.listenGlobal('body', 'mouseup', (event) => {
             if(this.dragging) {
                 this.dragging = false;
                 this.onSlideEnd.emit({originalEvent: event, value: this.value});
             }
         });
+
+        console.log(this.value);
+        console.log(this.handleValues[0]);
     }
-    
-    handleChange(event: Event) {
+
+    handleChange (event: Event) {
         let handleValue = this.calculateHandleValue(event);
         let newValue = this.getValueFromHandle(handleValue);
-     
-        if(this.range) {
-            if(this.step) {
+
+        if (this.range) {
+            if (this.step) {
                 this.handleStepChange(newValue, this.values[this.handleIndex]);
-            }
-            else {
-                this.handleValues[this.handleIndex] = handleValue;          
+            } else {
+                this.handleValues[this.handleIndex] = handleValue;
                 this.updateValue(newValue, event);
             }
-        }
-        else {            
-            if(this.step) {
+        } else {
+            if (this.step) {
                 this.handleStepChange(newValue, this.value);
-            } 
-            else {
+            } else {
                 this.handleValue = handleValue;
                 this.updateValue(newValue, event);
-            }         
+            }
         }
     }
-    
+
     handleStepChange(newValue: number, oldValue: number) {
         let diff = (newValue - oldValue);
 
-        if(diff < 0 && (-1 * diff) >= this.step / 2) {
+        if (diff < 0 && (-1 * diff) >= this.step / 2) {
             newValue = oldValue - this.step;
             this.updateValue(newValue);
             this.updateHandleValue();
-        }
-        else if(diff > 0 && diff >= this.step / 2) {
+        } else if (diff > 0 && diff >= this.step / 2) {
             newValue = oldValue + this.step;
             this.updateValue(newValue);
             this.updateHandleValue();
         }
     }
-    
-    writeValue(value: any) : void {
-        if(this.range)
-            this.values = value||[0,0];
-        else
-            this.value = value||0;
-        
+
+    writeValue(value: any): void {
+        if (this.range) {
+            this.values = value || [0, 0];
+        } else {
+            this.value = value || 0;
+        }
+
         this.updateHandleValue();
     }
-    
+
     registerOnChange(fn: Function): void {
         this.onModelChange = fn;
     }
@@ -183,11 +186,11 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
     registerOnTouched(fn: Function): void {
         this.onModelTouched = fn;
     }
-    
+
     setDisabledState(val: boolean): void {
         this.disabled = val;
     }
-    
+
     updateDomData(): void {
         let rect = this.el.nativeElement.children[0].getBoundingClientRect();
         this.initX = rect.left + this.domHandler.getWindowScrollLeft();
@@ -195,84 +198,81 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
         this.barWidth = this.el.nativeElement.children[0].offsetWidth;
         this.barHeight = this.el.nativeElement.children[0].offsetHeight;
     }
-    
+
     calculateHandleValue(event): number {
-        if(this.orientation === 'horizontal')
+        if (this.orientation === 'horizontal') {
             return Math.floor(((event.pageX - this.initX) * 100) / (this.barWidth));
-        else
+        } else {
             return Math.floor((((this.initY + this.barHeight) - event.pageY) * 100) / (this.barHeight));
+        }
     }
-    
+
     updateHandleValue(): void {
-        if(this.range) {
+        if (this.range) {
             this.handleValues[0] = (this.values[0] < this.min ? 0 : this.values[0] - this.min) * 100 / (this.max - this.min);
             this.handleValues[1] = (this.values[1] > this.max ? 100 : this.values[1] - this.min) * 100 / (this.max - this.min);
-        }
-        else {
-            if(this.value < this.min)
+        } else {
+            if (this.value < this.min) {
                 this.handleValue = 0;
-            else if(this.value > this.max)
+            } else if (this.value > this.max) {
                 this.handleValue = 100;
-            else
+            } else {
                 this.handleValue = (this.value - this.min) * 100 / (this.max - this.min);
+            }
         }
     }
-    
+
     updateValue(val: number, event?: Event): void {
-        if(this.range) {
+        if (this.range) {
             let value = val;
-            
-            if(this.handleIndex == 0) {
-                if(value < this.min) {
+
+            if (this.handleIndex === 0) {
+                if (value < this.min) {
                     value = this.min;
                     this.handleValues[0] = 0;
-                }
-                else if (value > this.values[1]) {
+                } else if (value > this.values[1]) {
                     value = this.values[1];
                     this.handleValues[0] = this.handleValues[1];
                 }
-            }
-            else {
-                if(value > this.max) {
+            } else {
+                if (value > this.max) {
                     value = this.max;
                     this.handleValues[1] = 100;
-                }
-                else if (value < this.values[0]) {
+                } else if (value < this.values[0]) {
                     value = this.values[0];
                     this.handleValues[1] = this.handleValues[0];
                 }
             }
-            
+
             this.values[this.handleIndex] = Math.floor(value);
             this.onModelChange(this.values);
             this.onChange.emit({event: event, values: this.values});
-        }
-        else {
-            if(val < this.min) {
+        } else {
+            if (val < this.min) {
                 val = this.min;
                 this.handleValue = 0;
-            }
-            else if (val > this.max) {
+            } else if (val > this.max) {
                 val = this.max;
                 this.handleValue = 100;
             }
-            
+
             this.value = Math.floor(val);
             this.onModelChange(this.value);
             this.onChange.emit({event: event, value: this.value});
+            console.log('update' + this.value);
         }
     }
-            
+
     getValueFromHandle(handleValue: number): number {
         return (this.max - this.min) * (handleValue / 100) + this.min;
     }
-    
+
     ngOnDestroy() {
-        if(this.dragListener) {
+        if (this.dragListener) {
             this.dragListener();
         }
-        
-        if(this.mouseupListener) {
+
+        if (this.mouseupListener) {
             this.mouseupListener();
         }
     }

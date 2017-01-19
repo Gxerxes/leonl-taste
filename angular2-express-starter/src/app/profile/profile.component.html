@@ -10,4 +10,4 @@
 
 <post-search-list></post-search-list>
 
-<p-slider [(ngModel)]="val1" [style]="{'width':'600px'}" [range]="true"></p-slider>
+<p-slider [(ngModel)]="val1" [style]="{'width':'600px'}" [min]="min" [max]="max" (onChange)="onBarClick($event)"></p-slider>

@@ -12,6 +12,7 @@
 	touch-action: none;
     z-index: 1;
     background-color: blue; 
+    border-radius: 50%;
 }
 .ui-slider .ui-slider-handle.ui-slider-handle-active {
     z-index: 2;

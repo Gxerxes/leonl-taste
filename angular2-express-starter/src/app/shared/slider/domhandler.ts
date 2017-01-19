@@ -387,7 +387,7 @@ export class DomHandler {
     }
     
     appendChild(element: any, target: any) {
-        if(this.isElement(target))
+        if (this.isElement(target))
             target.appendChild(element);
         else if(target.el && target.el.nativeElement)
             target.el.nativeElement.appendChild(element);
@@ -396,7 +396,7 @@ export class DomHandler {
     }
     
     removeChild(element: any, target: any) {
-        if(this.isElement(target))
+        if (this.isElement(target))
             target.removeChild(element);
         else if(target.el && target.el.nativeElement)
             target.el.nativeElement.removeChild(element);
