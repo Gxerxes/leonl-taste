@@ -11,6 +11,8 @@ export class ProfileComponent {
 
   profile$: Observable<{}>;
 
+  val1: number;
+
   constructor(store: Store<IAppState>) {
 
     this.profile$ = store.select('profile');
