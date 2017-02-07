@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "leonl_h5_template": "0.0.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   }
