@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ModalComponent, ModalDirectives } from './modal/modal.component';
 import { CommonModule } from '@angular/common';
+import { JsonpModule } from '@angular/http';
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
 import { RouterModule } from '@angular/router';
 import { SubNavigationComponent } from './sub-navigation/sub-navigation.component';
@@ -15,6 +16,7 @@ import { Ng2StyledDirective } from './directives/ng2-styled.directive';
 import { Ng2SliderComponent } from './ng2-slider/ng2-slider.component';
 
 import { Slider } from './slider/slider.component';
+import { WikipediaSearchComponent } from './wikipedia/wikipedia.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { Slider } from './slider/slider.component';
     NotesComponent,
     PaginationComponent,
     PostComponent,
-    Slider
+    Slider,
+    WikipediaSearchComponent
     // SlideAbleDirective,
     // Ng2StyledDirective,
     // Ng2SliderComponent
@@ -34,7 +37,8 @@ import { Slider } from './slider/slider.component';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JsonpModule
   ],
   exports: [
     ModalComponent,
@@ -44,7 +48,8 @@ import { Slider } from './slider/slider.component';
     NotesComponent,
     PaginationComponent,
     PostComponent,
-    Slider
+    Slider,
+    WikipediaSearchComponent
     // SlideAbleDirective,
     // Ng2StyledDirective,
     // Ng2SliderComponent
