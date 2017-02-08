@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { Observable } from 'rxjs';
@@ -18,7 +18,10 @@ export class AppComponent {
 
   observable$: Observable<{}>;
 
-  constructor(http: Http, store: Store<IAppState>) {
+  constructor(http: Http, store: Store<IAppState>, public viewContainerRef: ViewContainerRef) {
+
+    this.viewContainerRef = viewContainerRef;
+
     this.observable$ = http
       .get('/api/public/simple')
       .map((response: Response) => response.json());
