@@ -1,0 +1,17 @@
+{
+  "name": "text_analysis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "lodash": "^4.17.4",
+    "normalize": "^0.3.1",
+    "normalize.css": "^5.0.0"
+  }
+}
