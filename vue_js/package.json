@@ -1,5 +1,5 @@
 {
-  "name": "text_analysis",
+  "name": "vue_js",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,11 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^3.1.1",
-    "lodash": "^4.17.4",
-    "normalize": "^0.3.1",
-    "normalize.css": "^5.0.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "leonl_h5_template": "0.0.2",
+    "vue": "^2.1.10"
   }
 }

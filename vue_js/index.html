@@ -9,37 +9,16 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="./node_modules/normalize.css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="./main.css" />
-
-        <script src="./node_modules/jquery/dist/jquery.js"></script>
-        <script src="./node_modules/react/dist/react.js"></script>
-        <script src="./node_modules/react-dom/dist/react-dom.js"></script>
-
-        <script src="./lib/browser.min.js"></script>
-        <script src="./lib/lodash.js"></script> 
-       
+        <script src="./node_modules/vue/dist/vue.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-        <div class="top-side">
-
+        <div id="app">
+            {{ message }}
         </div>
-
-        <div class="left-side">
-            <div id="words">
-
-            </div>
-        </div>
-
-        <div class="container">
-            <textarea>A majority of the country thinks it's time for Donald Trump to log off, and never tweet - at least not from his personal Twitter account.
-            </textarea>
-        </div>
-
-        <script type="text/babel" src="./main.js"></script>
+         <script src="./main.js"></script>
     </body>
 </html>
