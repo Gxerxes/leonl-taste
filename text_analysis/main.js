@@ -1,5 +1,9 @@
 // var _ = require('lodash');
 
+$(document).ready(function() {
+
+})
+
 var val = $('textarea').text();
 var words = val.split(' ').filter(function (value) {
     return value;
@@ -30,7 +34,7 @@ var ListNotes = React.createClass({
             {
                 this.props.words.map(function (item, i){
                     return (
-                        <li>
+                        <li key={i}>
                             <label>{item}</label>
                         </li>
                     )
@@ -41,12 +45,14 @@ var ListNotes = React.createClass({
     }
 })
 
+var analysis = function () {
+    ReactDOM.render(
+        <NotesList>
+        </NotesList>,
+        $('#words')[0]
+    );
+}
 
-ReactDOM.render(
-    <NotesList>
-    </NotesList>,
-    $('#words')[0]
-);
 
 // TodoList 组件是一个整体的组件，最终的React渲染也将只渲染这一个组件
 // 该组件用于将『新增』和『列表』两个组件集成起来
