@@ -12,6 +12,8 @@ define(function (require) {
 
     var test = [5,9,0,17,3,29];
 
+    print(sort.quickSort(test));
+
     print(sort.bubbleSort(test));
 
     print(messages.getHello());

@@ -1,7 +1,7 @@
 define(function(require, factory) {
     'use strict';
     return {
-        quickSort: function (arr) {
+        quickSort: function quickSort (arr) {
             if (arr.length <= 1) {
                 return arr;
             }
@@ -17,9 +17,9 @@ define(function(require, factory) {
                     right.push(arr[i]);
                 }
             }
-            var result = quickSort(left);
+            var result = this.quickSort(left);
             result = result.concat(middleValue);
-            result = result.concat(quickSort(right));
+            result = result.concat(this.quickSort(right));
             return result;
         },
 
