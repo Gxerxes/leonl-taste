@@ -1,10 +1,3 @@
-// var quickSort = require('./quicksort').quickSort;
-
-//  console.log(quickSort([32,45,37,16,2,87]));
-// import {foo, bar} from 'foobar';
-// console.log(foo());
-// bar();
-
 (function() {
     var test = [5,9,0,17,3,29];
 
