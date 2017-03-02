@@ -11,5 +11,9 @@
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-preset-env": "^1.1.8"
+  },
+  "dependencies": {
+    "fake": "^0.2.2",
+    "faker": "^4.1.0"
   }
 }
