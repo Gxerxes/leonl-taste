@@ -10,11 +10,26 @@ define(function (require) {
 
     var sort = require('./sort');
 
-    var test = [5,9,0,17,3,29];
+    var faker = require('faker');
 
-    print(sort.quickSort(test));
+    console.log(faker);
+    faker.locale = 'en';
 
+    var firstRandom = faker.helpers.createCard();
+
+    var arr = [];
+
+    var test = [5, 3, 10, 7, 12, 9, 2];
+
+    for(var i = 0; i < 10000; i++) {
+        arr.push(Math.round(Math.random() * 10000));
+    }
+
+    console.time('Bubble sort');
     print(sort.bubbleSort(test));
+    console.timeEnd('Bubble sort');
 
-    print(messages.getHello());
+    console.time('Quick sort');
+    print(sort.quickSort(test));
+    console.timeEnd('Quick sort');
 });
