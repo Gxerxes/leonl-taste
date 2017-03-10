@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MyAppComponent } from './myapp.component';
 import { MyAppRoutingModule } from './myapp-routing.module';
+import { TooltipModule } from '../shared/tooltip/tooltip.module';
 
 @NgModule({
     declarations: [
@@ -12,7 +13,8 @@ import { MyAppRoutingModule } from './myapp-routing.module';
     imports: [
         FormsModule,
         CommonModule,
-        MyAppRoutingModule
+        MyAppRoutingModule,
+        TooltipModule
     ],
     exports: [
         MyAppComponent
