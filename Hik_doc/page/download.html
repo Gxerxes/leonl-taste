@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+	<meta http-equiv="Expires" content="0" />
+	<script>
+		document.write("<link type='text/css' href='../ui/css/ui.css?version=" + new Date().getTime() + "' rel='stylesheet' />");
+	</script>
+</head>
+<body class="download-body">
+	<div class="layout-north" id="header" ng-controller="headerController">
+		<div class="header" ng-include="'common/header.asp'" onload="headerLoaded()"></div>
+	</div>
+	<div class="download layout-center" ng-controller="downloadController">
+		<div class="layout-north-inner">
+			<span class="download-type download-type-select" ng-click="changeDownType($event)" ng-bind="oLan.downloadByFile"></span>
+			<!--<span class="download-type" ng-click="changeDownType($event)" ng-bind="oLan.downloadbyDate"></span>-->
+		</div>
+		<div class="layout-west-inner">
+			<div class="header"><label ng-bind="oLan.searchConditions"></label></div>
+			<div class="west-content">
+				<div ng-if="!bSupportCloudPic" ng-show="iChannelNum > 1">
+					<div class="file-type" ng-bind="oLan.channelNo"></div>
+					<div channel analog="oAnalogId" digital="oDigital" analog-num="iAnalogChannelNum" channel-id="channelInfo.iChannelId" lan="oLan"></div>
+				</div>
+				<div ng-if="bSupportCloudPic && fileType !== 'record'">
+					<div class="file-type">ID</div>
+					<div><input type="text" class="text" ng-model="$parent.cameraID"></div>
+				</div>
+				<div ng-if="fileType === 'record'">
+					<div class="file-type"><label ng-bind="oLan.fileType"></label></div>
+					<div><select class="select" ie-select-fix ng-model="params.recordFileType" ng-options="recordFileType.value as recordFileType.name for recordFileType in recordFileTypes"></select></div>
+				</div>
+				<div ng-if="fileType !== 'record' && !bSupportCloudPic">
+					<div class="file-type"><label ng-bind="oLan.fileType"></label></div>
+					<div>
+                    	<select class="select" ie-select-fix ng-model="params.captureFileType" ng-options="captureFileType.value as captureFileType.name for captureFileType in captureFileTypes"></select>
+                    </div>
+				</div>
+				<div ng-show="params.captureFileType === 'vehicleDetection'">
+					<div ng-show="aCountryList.length === 0" class="file-type"><label ng-bind="oLan.provinceAbbreviation"></label></div>
+					<div ng-show="aCountryList.length === 0"><select class="select" ng-model="province" ng-options="province.value as province.name for province in provinces"></select></div>
+					<div ng-show="aCountryList.length > 0" class="file-type"><label ng-bind="oLan.country"></label></div>
+					<div ng-show="aCountryList.length > 0"><select class="select" ng-model="country" ng-options="oCountry.value as oCountry.name for oCountry in aCountryList"></select></div>
+					<div class="file-type"><label ng-bind="oLan.plateNo"></label></div>
+					<div><input type="text" class="text" ng-model="plate" maxlength="5"></div>
+				</div>
+				<div ng-show="params.captureFileType === 'HVTVehicleDetection'">
+                    <div class="file-type"><label ng-bind="oLan.HVTVehicleType"></label></div>
+                    <div>
+                        <select class="select" ng-model="params.hvtType">
+                            <option value="all" ng-bind="oLan.all"></option>
+                            <option value="pedestrian" ng-bind="oLan.pedestrian"></option>
+                            <option value="nonMotorVehicle" ng-bind="oLan.nonMotorVehicle"></option>
+                            <option value="motorVehicle" ng-bind="oLan.motorVehicle"></option>
+                        </select>
+                    </div>
+                    <div ng-show="params.hvtType === 'motorVehicle'">
+                        <div class="file-type"><label ng-bind="oLan.provinceAbbreviation"></label></div>
+                        <div><select class="select" ng-model="province" ng-options="province.value as province.name for province in provinces"></select></div>
+                        <div class="file-type"><label ng-bind="oLan.plateNo"></label></div>
+                        <div><input type="text" class="text" ng-model="plate"></div>
+                    </div>
+                </div>
+                <div ng-show="showTrafficParam(params.captureFileType)">
+                    <div class="file-type"><label ng-bind="oLan.trafficCaptureType"></label></div>
+                    <div>
+                        <select class="select" ng-model="params.trafficCapture">
+                            <option value="anyType" ng-bind="oLan.trafficAllType"></option>
+                            <option value="event" ng-bind="oLan.trafficEventType"></option>
+                            <option ng-if="hideTrafficOption(params.captureFileType)" value="evidence" ng-bind="oLan.trafficEvidenceType"></option>
+                        </select>
+                    </div>
+                </div>
+				<div class="search-time"><label ng-bind="oLan.startTime"></label></div>
+				<div><input type="text" class="Wdate" dp-model="oSearchTime.startTime" date></div>
+				<div class="search-time"><label ng-bind="oLan.endTime"></label></div>
+				<div><input type="text" class="Wdate" dp-model="oSearchTime.endTime" date></div>
+				<div>
+					<button type="button" class="btn search-btn" ng-click="searchFile()" ng-disabled="!bSupportSearch || bDownloading">
+						<span class="img">&nbsp;</span>
+						<span ng-bind="oLan.search"></span>
+					</button>
+				</div>
+				<div id="main_plugin" class="no-window"></div>
+			</div>
+		</div>
+		<div class="layout-center-inner">
+			<div class="layout-north-inner-inner">
+				<div class="header">
+					<label ng-bind="oLan.fileList"></label>
+					<div class="right">
+						<button type="button" class="btn" ng-disabled="bDownloading" ng-click="startDownload()">
+							<span class="download-btn start-download-btn">&nbsp;</span>
+							<span ng-bind="oLan.download"></span>
+						</button>
+						<button type="button" class="btn" ng-disabled="!bDownloading" ng-click="stopDownload()">
+							<span class="download-btn stop-download-btn">&nbsp;</span>
+							<span ng-bind="oLan.stopDownload"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="layout-center-inner-inner">
+				<div id="table" class="inner-body"></div>
+			</div>
+		</div>
+	</div>
+	<div class="layout-south">
+		<div class="footer" id="footer"></div>
+	</div>
+</body>
+<script id="seajsnode" src="../script/lib/seajs/seajs/sea-2.1.1.min.js"></script>
+<script>
+	document.write("<script src='../script/lib/seajs/config/sea-config.js?version=" + new Date().getTime() + "' ></scr" + "ipt>");
+	document.write("<script src='../script/lib/jquery/My97DatePicker/WdatePicker.js?version=" + new Date().getTime() + "' ></scr" + "ipt>");
+</script>
+</html>
