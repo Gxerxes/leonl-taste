@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
     <head>
         <script>
@@ -11,6 +12,41 @@
                 console.log(evt);
                 console.log(evt.data);
             }
+
+            function nonWebWorker() {
+                var a = [];
+
+                for (var i = 50000; i >= 0; i--) {
+                    a.push(i);
+                }
+
+                function bubbleSort(a) {
+                    var swapped;
+                    do {
+                        swapped = false;
+                        for (var i = 0; i < a.length - 1; i++) {
+                            if (a[i] > a[i+1]) {
+                                var temp = a[i];
+                                a[i] = a[i+1];
+                                a[i+1] = temp;
+                                swapped = true;
+                            }
+                        }
+                    } while (swapped);
+                }
+
+                var start = new Date().getTime();
+                bubbleSort(a);
+                var end = new Date().getTime();
+                var time = end - start;
+            }
+
+            function withWebWorker() {
+                var worker = new Worker("worker_50k.js");
+                worker.onmessage = function (e) {
+                    console.log(e);
+                };
+            }
         </script>
     </head>
     <body>
@@ -21,6 +57,9 @@
         
         <input id="speedy" type="range" min="0" max="10" value="10"
         style="position:relative; visibility:hidden;" step="1"/>
+
+        <button onclick="javascript:nonWebWorker();">Without Web Worker</button>
+        <button onclick="javascript:withWebWorker();">With Web Worker</button>
     </body>
 </html>
     
