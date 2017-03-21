@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+	<meta http-equiv="Expires" content="0" />
+	<script>
+		document.write("<link type='text/css' href='../ui/css/ui.css?version=" + new Date().getTime() + "' rel='stylesheet' />");
+	</script>
+</head>
+<body ng-keypress="docPress($event)" ng-controller="loginController" ng-cloak class="ng-cloak">
+<div class="login" id="login">
+	<div class="top">
+		<div class="logo"></div>
+    	<div class="language">
+			<div class="language-show" ng-click="showLanguageList($event)"><span class="current-language" id="current_language"></span></div>
+			<div class="language-list" id="language_list" ng-click="changeLanguage($event)"></div>
+		</div>
+	</div>
+	<table cellspacing="0" cellpadding="0" border="0" class="middle">
+		<tr>
+			<td class="login-l">&nbsp;</td>
+			<td class="login-m">
+				<div class="login-part">
+					<div class="line"></div>
+					<div class="login-error">
+						<div class="inputValidTip" ng-show="szErrorTip!=''"><i class='error'></i><label>{{szErrorTip}}</label></div>
+					</div>
+					<div class="login-user">
+						<input type="text" class="login-input" id="username" ng-model="username"maxlength="32" autocomplete="off" placeholder="{{oLan.username}}" />
+						<i class="icon-user"></i>
+					</div>
+					<div class="login-item">
+						<input type="password" class="login-input" id="password" ng-model="password" maxlength="16" placeholder="{{oLan.password}}" />
+						<i class="icon-pass"></i>
+					</div>
+					<div class="login-item">
+						<button type="button" class="btn btn-primary login-btn" ng-click="login()"><label ng-bind="oLan.login"></label></button>
+					</div>
+					<div class="login-item anonymous" ng-show="anonymous">
+						<span ng-bind="oLan.anonymous" ng-click="login('anonymous')"></span>
+					</div>
+				</div>
+			</td>
+			<td class="login-r">&nbsp;</td>
+		</tr>
+	</table>
+	<div class="footer" id="footer"></div>
+</div>
+<div id="active" class="msg-content-wrap">
+    <div class="msg-content">
+        <div class="password">
+        	<span class="desc"><label ng-bind="oLan.username"></label></span>
+        	<span><label ng-bind="activeUsername"></label></span>
+        </div>
+        <div class="password">
+        	<span class="desc"><label ng-bind="oLan.password"></label></span>
+        	<span><input id="activePassword" type="password" ng-model="activePassword" maxlength="16" onpaste="return false;" /></span>
+        	<span class="inputValidTip"><i ng-class="{true:'success', false:'error'}[activePasswordStatus]"></i></span>
+        </div>
+        <div strength class="passwordstrength" lan="oLan" o-password="activePassword" o-username="activeUsername"></div>
+        <div class="password">
+        	<span class="desc"><label ng-bind="oLan.confirm"></label></span>
+        	<span><input type="password" onpaste="return false;" ng-model="activePasswordConfirm" maxlength="16" /></span>
+        </div>
+    </div>
+</div>
+<div id="main_plugin" class="no-window"></div>
+</body>
+<script id="seajsnode" src="../script/lib/seajs/seajs/sea-2.1.1.min.js"></script>
+<script>
+	document.write("<script src='../script/lib/seajs/config/sea-config.js?version=" + new Date().getTime() + "' ></scr" + "ipt>");
+</script>
+</html>
