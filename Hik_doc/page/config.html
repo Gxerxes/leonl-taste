@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+	<meta http-equiv="Expires" content="0" />
+	<script>
+		document.write("<link type='text/css' href='../ui/css/ui.css?version=" + new Date().getTime() + "' rel='stylesheet' />");
+	</script>
+</head>
+<body class="config" id="config">
+	<div class="layout-north ng-cloak" id="header" ng-controller="headerController" ng-cloak>
+		<div class="header" ng-include="'common/header.asp'" onload="headerLoaded();"></div>
+	</div>
+	<div class="layout-west ng-cloak" id="menu" ng-controller="menuController" ng-cloak>
+		<div class="sdmenu" onselectstart="return false;" ng-include="'common/menu.asp'" onload="menuLoaded();"></div>
+	</div>
+	<div class="layout-center">
+		<div class="layout-center-inner">
+			<div id="view" class="view"></div>
+		</div>
+		<div class="layout-south-inner">
+			<div class="footer" id="footer"></div>
+		</div>
+	</div>
+</body>
+<script id="seajsnode" src="../script/lib/seajs/seajs/sea-2.1.1.min.js"></script>
+<script src="../script/lib/jquery/html5/jsDecoder/WebGLCanvas.js"></script>
+<script>
+	document.write("<script src='../script/lib/seajs/config/sea-config.js?version=" + new Date().getTime() + "' ></scr" + "ipt>");
+	document.write("<script src='../script/lib/jquery/My97DatePicker/WdatePicker.js?version=" + new Date().getTime() + "' ></scr" + "ipt>");
+</script>
+<script for=PreviewActiveX event="GetSelectWndInfo(SelectWndInfo)">
+	GetSelectWndInfo(SelectWndInfo);
+</script>
+<script for=PreviewActiveX event="PluginEventHandler(iEventType, iParam1, iParam2)">
+	PluginEventHandler(iEventType, iParam1, iParam2);
+</script>
+</html>
