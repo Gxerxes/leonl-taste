@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello Sea.js</title>
+        <link rel="stylesheet" href="./static/hello/src/style.css">
+    </head>
+    <body>
+        <div id="container">
+
+        </div>
+
+        <script src="./node_modules/seajs/dist/sea.js"></script>
+        <script>
+        // Set configuration
+        seajs.config({
+            base: "./node_modules/",
+            alias: {
+                "jquery": "jquery/dist/jquery"
+            }
+        });
+        // // For development
+        // if (location.href.indexOf("?dev") > 0) {
+        //     seajs.use("../static/hello/src/main");
+        // }
+        // // For production
+        // else {
+        //     seajs.use("examples/hello/1.0.0/main");
+        // }
+
+         seajs.use("./static/hello/src/main");
+
+         seajs.use("./static/hello/src/main", function () {
+             console.log($);
+             console.log('test');
+            });
+        </script>
+
+    </body>
+</html>
