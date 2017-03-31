@@ -9,7 +9,7 @@ define(function(require) {
   // console.log(Spinning);
   // console.log('hello');
 
-  var list = require('./list');
+  var list = require('./data_structure/list');
 
   console.log(list);
 });
