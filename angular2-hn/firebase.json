@@ -1,8 +1,8 @@
 {
-  "hosting": {
-    "public": "dist"
-  },
   "database": {
     "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "dist"
   }
 }
